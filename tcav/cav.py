@@ -98,7 +98,7 @@ class CAV(object):
     cav_path = os.path.join(
         cav_dir,
         CAV.cav_key(concepts, bottleneck, cav_hparams['model_type'],
-                    cav_hparams['alpha'] + '.pkl')
+                    cav_hparams['alpha'] + '.pkl'))
     return tf.io.gfile.exists(cav_path)
 
   @staticmethod

@@ -20,7 +20,7 @@ with open(path.join(package_dir, 'README.md')) as f:
     long_description = f.read()
 
 setup(name='tcav',
-      version='0.2.1',
+      version='0.2.2',
       description='Testing with Concept Activation Vectors code',
       long_description=long_description,
       long_description_content_type='text/markdown',
@@ -36,4 +36,5 @@ setup(name='tcav',
           'scikit-learn>=0.20.3',
           'scipy>=1.2.1',
           'protobuf>=3.10.0',
+          'tensorflow==2.3.0',
       ])

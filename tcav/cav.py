@@ -98,7 +98,7 @@ class CAV(object):
     cav_path = os.path.join(
         cav_dir,
         CAV.cav_key(concepts, bottleneck, cav_hparams['model_type'],
-                    cav_hparams['alpha'] + '.pkl'))
+                    str(cav_hparams['alpha']) + '.pkl'))
     return tf.io.gfile.exists(cav_path)
 
   @staticmethod
@@ -165,7 +165,7 @@ class CAV(object):
     x, labels, labels2text = CAV._create_cav_training_set(
         self.concepts, self.bottleneck, acts)
 
-    if self.hparams.model_type == 'linear':
+    if self.hparams['model_type'] == 'linear':
       lm = linear_model.SGDClassifier(alpha=self.hparams['alpha'], max_iter=self.hparams['max_iter'], tol=self.hparams['tol'])
     elif self.hparams['model_type'] == 'logistic':
       lm = linear_model.LogisticRegression()

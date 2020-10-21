@@ -36,11 +36,7 @@ class CavTest(googletest.TestCase):
 
     The cav instance uses preset values.
     """
-    self.hparams = self.hparams = {model_type='linear', 
-                                   alpha=.01, 
-                                   max_iter=1000, 
-                                   tol=1e-3,
-                                   'model_type':'linear', 
+    self.hparams = self.hparams = {'model_type':'linear', 
                                    'alpha':.01, 
                                    'max_iter':1000, 
                                    'tol':1e-3}

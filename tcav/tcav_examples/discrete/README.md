@@ -11,18 +11,12 @@ of attacks. This will:
 
 ## Installation
 
-Tensorflow must be installed to use TCAV. But it isn't included in the TCAV pip
-package install_requires as a user may wish to use it with either the tensorflow
-or tensorflow-gpu package. So please pip install tensorflow or tensorflow-gpu as
-well as the tcav package.
-
 > pip install tcav
 
 ### Requirements
 
 See requirements.txt for a list of python dependencies used in testing TCAV.
-These will all be installed during pip installation of tcav with the exception
-of tensorflow, as mentioned above.
+These will all be installed during pip installation of tcav.
 
 
 ## Running the code
@@ -45,5 +39,4 @@ jupyter notebook
 
 ## Common issues
 
-- Make sure your tensorflow version is 1.3.5. This code is not compatible with tensorflow v2.0
 - Ensure that your virtual environment has all the necessary packages installed

@@ -49,18 +49,12 @@ No. You don't need to change or retrain your network to use TCAV.
 
 ## Installation
 
-Tensorflow must be installed to use TCAV. But it isn't included in the TCAV pip
-package install_requires as a user may wish to use it with either the tensorflow
-or tensorflow-gpu package. So please pip install tensorflow or tensorflow-gpu as
-well as the tcav package.
-
 > pip install tcav
 
 ### Requirements
 
 See requirements.txt for a list of python dependencies used in testing TCAV.
-These will all be installed during pip installation of tcav with the exception
-of tensorflow, as mentioned above.
+These will all be installed during pip installation of tcav.
 
 ## How to use TCAV
 
@@ -103,6 +97,7 @@ tcav/tcav_examples/discrete/kdd99_discrete_example.ipynb.
 -   matplotlib
 -   scikit-learn
 -   scipy
+-   pandas
 
 ## How to run unit tests
 

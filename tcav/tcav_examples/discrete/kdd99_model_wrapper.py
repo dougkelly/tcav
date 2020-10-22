@@ -19,7 +19,7 @@ import tensorflow as tf
 
 
 class KDD99KerasModelWrapper(KerasModelWrapper):
-  """ ModelWrapper for the KDD99 dataset from sklearn.
+    """ ModelWrapper for the KDD99 dataset from sklearn.
 
     This uses the KDD99 dataset from sklearn. It is automatically loaded when we
     try to train models, so no data downloading is required.
@@ -31,19 +31,20 @@ class KDD99KerasModelWrapper(KerasModelWrapper):
     To see it in action, please check kdd99_discrete_example.ipynb
     """
 
-  def __init__(self, sess, model_path, labels_path):
-    if not tf.io.gfile.exists(labels_path):
-      raise Exception(
-          "Labels path does not exist. Please provide a labels file.")
-    # Train a model if we have none
-    if not tf.io.gfile.exists(model_path):
-      train_and_save_model(model_path, labels_path)
+    def __init__(self, sess, model_path, labels_path):
+        if not tf.io.gfile.exists(labels_path):
+            raise Exception(
+                "Labels path does not exist. Please provide a labels file.")
+        # Train a model if we have none
+        if not tf.io.gfile.exists(model_path):
+            train_and_save_model(model_path, labels_path)
 
-    # Initialize the wrapper
-    super(KDD99KerasModelWrapper, self).__init__(sess, model_path, labels_path)
+        # Initialize the wrapper
+        super(KDD99KerasModelWrapper, self).__init__(sess, model_path,
+                                                     labels_path)
 
-    # Using SparseCategoricalCrossEntropy here
-    self.y_input = tf.compat.v1.placeholder(tf.int64, shape=[None])
-    self.loss = self.model.loss_functions[0](self.y_input,
-                                             self.model.outputs[0])
-    self._make_gradient_tensors()
+        # Using SparseCategoricalCrossEntropy here
+        self.y_input = tf.compat.v1.placeholder(tf.int64, shape=[None])
+        self.loss = self.model.loss_functions[0](self.y_input,
+                                                 self.model.outputs[0])
+        self._make_gradient_tensors()

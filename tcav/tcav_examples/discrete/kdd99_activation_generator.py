@@ -21,7 +21,7 @@ import tensorflow as tf
 
 
 class KDD99DiscreteActivationGenerator(DiscreteActivationGeneratorBase):
-  """ Activation generator for the KDD99 dataset.
+    """ Activation generator for the KDD99 dataset.
 
   This uses the KDD99 dataset from sklearn. It is automatically loaded when we
   try to train models, so no data downloading is required.
@@ -32,13 +32,13 @@ class KDD99DiscreteActivationGenerator(DiscreteActivationGeneratorBase):
   To see it in action, please check kdd99_discrete_example.ipynb
   """
 
-  def __init__(self, model, source_dir, acts_dir, max_examples):
-    self.source_dir = source_dir
-    super(KDD99DiscreteActivationGenerator,
-          self).__init__(model, source_dir, acts_dir, max_examples)
+    def __init__(self, model, source_dir, acts_dir, max_examples):
+        self.source_dir = source_dir
+        super(KDD99DiscreteActivationGenerator,
+              self).__init__(model, source_dir, acts_dir, max_examples)
 
-  def load_data(self, concept):
-    """ Reads csv files into a numpy.ndarray containing income data
+    def load_data(self, concept):
+        """ Reads csv files into a numpy.ndarray containing income data
 
     For this case, we create directories follow the following structure
     source_dir >>
@@ -55,20 +55,21 @@ class KDD99DiscreteActivationGenerator(DiscreteActivationGeneratorBase):
       texts: A numpy array, where each subarray contains one row of the dataset
 
     """
-    concept_folder = os.path.join(self.source_dir, concept)
-    concept_file = os.path.join(concept_folder, concept + '.csv')
-    with tf.io.gfile.GFile(concept_file, 'r') as f:
-      texts = [
-          l.strip().split(',') for l in f.readlines()[:self.max_examples + 1]
-      ]
-    texts = np.array(texts, dtype='O')
-    texts = texts[1:]  # remove headers
-    texts = texts[:, :-1]  # remove labels
-    texts = self._convert_types(texts)  # Assign proper data types
-    return texts
+        concept_folder = os.path.join(self.source_dir, concept)
+        concept_file = os.path.join(concept_folder, concept + '.csv')
+        with tf.io.gfile.GFile(concept_file, 'r') as f:
+            texts = [
+                l.strip().split(',')
+                for l in f.readlines()[:self.max_examples + 1]
+            ]
+        texts = np.array(texts, dtype='O')
+        texts = texts[1:]  # remove headers
+        texts = texts[:, :-1]  # remove labels
+        texts = self._convert_types(texts)  # Assign proper data types
+        return texts
 
-  def transform_data(self, data):
-    """ Encodes categorical columns and returns them as a numpy array
+    def transform_data(self, data):
+        """ Encodes categorical columns and returns them as a numpy array
 
      We first encode our categorical variables, so that they can be parsed by
      the model. Finally,
@@ -82,11 +83,11 @@ class KDD99DiscreteActivationGenerator(DiscreteActivationGeneratorBase):
 
 
     """
-    encoded_data = encode_variables(data)
-    return encoded_data
+        encoded_data = encode_variables(data)
+        return encoded_data
 
-  def _convert_types(self, texts):
-    """ When read from .csv, all variables are parsed as string.
+    def _convert_types(self, texts):
+        """ When read from .csv, all variables are parsed as string.
 
     This function assigns the proper types
 
@@ -97,7 +98,7 @@ class KDD99DiscreteActivationGenerator(DiscreteActivationGeneratorBase):
       texts: numpy.ndarray. Returns data with the proper types assigned
 
     """
-    texts[:, kBytesIndices] = texts[:, kBytesIndices].astype(str)
-    texts[:, kFloatIndices] = texts[:, kFloatIndices].astype(np.float32)
-    texts[:, kIntIndices] = texts[:, kIntIndices].astype(np.int)
-    return texts
+        texts[:, kBytesIndices] = texts[:, kBytesIndices].astype(str)
+        texts[:, kFloatIndices] = texts[:, kFloatIndices].astype(np.float32)
+        texts[:, kIntIndices] = texts[:, kIntIndices].astype(np.int)
+        return texts
